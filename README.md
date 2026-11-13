@@ -1,34 +1,38 @@
-# callum frost. 2.0
+# callum frost.
 
-Redesign of [callumfrost.com](https://www.callumfrost.com) by [Sullivan Park Design](https://sullivanparkdesign.com).
-Plain HTML, CSS and JavaScript: no build step and no dependencies, so it runs on GitHub Pages or any static host.
+The website for Vancouver actor Callum Frost: [www.callumfrost.com](https://www.callumfrost.com).
+Designed and built by [Sullivan Park Design](https://sullivanparkdesign.com). Hosted on GitHub Pages.
+
+Plain HTML, CSS and JavaScript: no build step and no dependencies.
 
 ## Pages
 
-| File | Page |
+Page addresses match the old Squarespace site, so existing links and Google results keep working.
+
+| Address | File |
 | --- | --- |
-| `index.html` | home |
-| `about.html` | about |
-| `resume.html` | resume (download PDF + print) |
-| `portfolio.html` | gallery |
-| `headshots.html`, `film-and-tv.html`, `theatre.html` | gallery categories |
-| `newsies.html`, `hsm.html`, `aladdin.html` | theatre show galleries |
-| `media.html` | media / demo reel |
-| `contact.html` | contact |
+| `/` | `index.html` |
+| `/about` | `about.html` |
+| `/resume` | `resume.html` (download + print; the PDF is `s/Callum-Resume.pdf`) |
+| `/portfolio/` | `portfolio/index.html` (gallery) |
+| `/portfolio/headshots`, `/portfolio/film-and-tv`, `/portfolio/theatre` | `portfolio/*.html` |
+| `/newsies`, `/hsm`, `/aladdin` | theatre show galleries |
+| `/media` | `media.html` |
+| `/contact` | `contact.html` |
+| anything else | `404.html` |
 
 ## Where to tweak things
 
-- **Styles:** `assets/css/site.css` (colours, buttons, film-frame shadows, motion, photo viewer, print styles for the resume).
-- **Behaviour:** `assets/js/site.js` (click-to-enlarge photo viewer with arrows, Esc and thumbnails; resume print button; the timecode on the home hero).
-- **Photos:** `assets/img/`. Any image with a `data-lb="N"` attribute opens the viewer at photo N. Each page lists its viewer photos in the `cf-photos` JSON block at the bottom of the page.
-- **Soft film reel shadow:** the `shade sh-reel` element on `index.html` and `contact.html`. Change `sh-reel` to `sh-strip` for the film strip, or delete the element to remove it.
+- **Styles:** `assets/css/site.css` (colours, buttons, film-frame shadows, motion, photo viewer, resume print styles).
+- **Behaviour:** `assets/js/site.js` (click-to-enlarge photo viewer with arrows, Esc and thumbnails; resume print button; home hero timecode).
+- **Photos:** `assets/img/`. Any element with `data-lb="N"` opens the viewer at photo N; each page lists its viewer photos in the `cf-photos` JSON block at the bottom.
+- **New resume:** replace `s/Callum-Resume.pdf` (keep the same name) and update the text in `resume.html`.
+- **Soft film reel shadow:** the `shade sh-reel` element on `index.html` and `contact.html` (`sh-strip` for the film strip, or delete it).
 
-## Turning on GitHub Pages
+## SEO
 
-Settings → Pages → Build and deployment → Source: **Deploy from a branch** → Branch: **main**, folder **/ (root)** → Save.
-The site appears at `https://<account>.github.io/<repo>/` after a minute or two.
+Each page has its own title, description, canonical URL and social-share image. `sitemap.xml` lists every page for Google Search Console, and the home and about pages carry Person structured data.
 
-## Before this goes live
+## Domain
 
-1. Remove the `<meta name="robots" content="noindex, nofollow">` line from every page and delete `robots.txt`. They stop Google indexing this preview as a copy of the live site.
-2. The resume "download pdf" button links to the PDF on callumfrost.com. If the site moves host, add the PDF to the repo and update the link in `resume.html`.
+`CNAME` holds `www.callumfrost.com`. DNS (managed in Squarespace Domains): four A records for `@` pointing to GitHub Pages and a `www` CNAME to `sullivanparkdesign.github.io`.
